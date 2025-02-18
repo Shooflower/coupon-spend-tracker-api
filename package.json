@@ -1,0 +1,27 @@
+{
+  "name": "coupon-spend-tracker-api",
+  "version": "1.0.0",
+  "description": "A tool that helps track how much you spend while couponing",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shooflower/coupon-spend-tracker-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shooflower/coupon-spend-tracker-api/issues"
+  },
+  "homepage": "https://github.com/Shooflower/coupon-spend-tracker-api#readme",
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongodb": "^6.13.0",
+    "typescript": "^5.7.3"
+  }
+}
