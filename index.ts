@@ -7,7 +7,7 @@ const app = express()
 const server = createServer(app)
 const port = 5678
 
-const corsWhitelist = ["http://localhost:5173", "https://coupon-inventory.netlify.app"]
+const corsWhitelist = ["http://localhost:5173", "https://couponspendtracker.netlify.app"]
 
 // Required for parsing request.body as json
 app.use(express.json())
