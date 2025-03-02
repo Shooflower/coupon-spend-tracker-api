@@ -1,4 +1,5 @@
 import * as mongodb from "mongodb"
+import { ObjectId } from "mongodb"
 import "dotenv/config.js"
 import { ExpenseEntry } from "../types/types"
 
@@ -73,7 +74,7 @@ export async function addExpense(expense:ExpenseEntry) {
 export async function getAllExpenses() {
     try {
         const collection = await getCollection()
-        const results = await collection.find()
+        const results = collection.find()
 
         const expenses = []
 
@@ -84,5 +85,15 @@ export async function getAllExpenses() {
         return expenses
     } catch(error) {
         throw new Error(`Error while fetching all documents: ${error}`)
+    }
+}
+
+export async function deleteExpense(expenseId:string) {
+    try {
+        const collection = await getCollection()
+        return collection.deleteOne({_id: new ObjectId(expenseId)})
+
+    } catch(error) {
+        throw new Error(`Error while deleting expense with ID: ${expenseId} - ${error}`)
     }
 }

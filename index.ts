@@ -63,5 +63,19 @@ app.get("/expense", (request, response) => {
         })
 })
 
+// Delete expense
+app.delete("/expense/:id", (request, response) => {
+    const {id} = request.params
+    service.deleteExpense(id)
+    .then((result) => {
+        console.log(`DB Server Response: ${result}`)
+        response.status(200)
+        response.send({result: `Successfully removed expense ${id}`})
+    })
+    .catch(error => {
+        response.status(500)
+        response.send({result: `There was an error trying to delete expense with id ${id}: ${error}`})
+    })
+})
 
 server.listen(port, () => console.log(`Server listening at ${port}`))
