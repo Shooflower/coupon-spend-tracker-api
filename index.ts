@@ -33,6 +33,11 @@ app.all("*", (request, response, next) => {
     }
 })
 
+// TODO: retrieve stores from db
+app.get("/store", (request, response) => {
+    response.send({result: ["CVS", "Walgreens", "Publix", "Target", "Walmart", "Winn-Dixie"]})
+})
+
 app.post("/addexpense", (request, response) => {
         
     const expenseObj = request.body
