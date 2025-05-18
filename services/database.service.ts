@@ -71,6 +71,27 @@ export async function addExpense(expense:ExpenseEntry) {
     }
 }
 
+export async function updateExpense(expense:ExpenseEntry, id:string) {
+    const filter = {_id: new ObjectId(id)}
+    const expenseObj = {
+        $set: {
+            expenseType: expense.expenseType,
+            store: expense.store,
+            amount: expense.amount,
+            tax: expense.tax,
+            total: expense.total,
+            purchaseDate: expense.purchaseDate
+        }
+    }
+
+    try{
+        const collection = await getCollection()
+        return collection.updateOne(filter, expenseObj)
+    } catch(error) {
+        throw new Error(`Error while updating document with id ${expense._id}: ${error}`)
+    }
+}
+
 export async function getAllExpenses() {
     try {
         const collection = await getCollection()

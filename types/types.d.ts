@@ -1,4 +1,5 @@
 export type ExpenseEntry = {
+    _id?: string,
     expenseType?: string,
     store?: string,
     amount?: number,

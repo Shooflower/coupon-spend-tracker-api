@@ -34,11 +34,11 @@ app.all("*", (request, response, next) => {
 })
 
 // TODO: retrieve stores from db
-app.get("/store", (request, response) => {
+app.get("/stores", (request, response) => {
     response.send({result: ["CVS", "Walgreens", "Publix", "Target", "Walmart", "Winn-Dixie"]})
 })
 
-app.post("/addexpense", (request, response) => {
+app.post("/expenses", (request, response) => {
         
     const expenseObj = request.body
     service.addExpense(expenseObj)
@@ -55,7 +55,7 @@ app.post("/addexpense", (request, response) => {
 })
 
 // Get all expenses
-app.get("/expense", (request, response) => {
+app.get("/expenses", (request, response) => {
     service.getAllExpenses()
         .then(expenses => {
             console.log(expenses)
@@ -69,7 +69,7 @@ app.get("/expense", (request, response) => {
 })
 
 // Delete expense
-app.delete("/expense/:id", (request, response) => {
+app.delete("/expenses/:id", (request, response) => {
     const {id} = request.params
     service.deleteExpense(id)
     .then((result) => {
@@ -80,6 +80,22 @@ app.delete("/expense/:id", (request, response) => {
     .catch(error => {
         response.status(500)
         response.send({result: `There was an error trying to delete expense with id ${id}: ${error}`})
+    })
+})
+
+// Update expense
+app.put("/expenses/:id", (request, response) => {
+    const {id} = request.params
+    const expenseObj = request.body
+    service.updateExpense(expenseObj, id)
+    .then((result) => {
+        console.log(`DB Server Response: ${JSON.stringify(result)}`)
+        response.status(200)
+        response.send({result: `Successfully updated expense ${id}`})
+    })
+    .catch(error => {
+        response.status(500)
+        response.send({result: `There was an error trying to update expense with id ${id}: ${error}`})
     })
 })
 
