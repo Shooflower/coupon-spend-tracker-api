@@ -35,7 +35,7 @@ app.all("*", (request, response, next) => {
 
 // TODO: retrieve stores from db
 app.get("/stores", (request, response) => {
-    response.send({result: ["CVS", "Walgreens", "Publix", "Target", "Walmart", "Winn-Dixie"]})
+    response.send({result: ["CVS", "Walgreens", "Publix", "Target", "Walmart", "Winn-Dixie", "The Fresh Market", "Dollar Tree", "Whole Foods", "Miscellaneous"]})
 })
 
 app.post("/expenses", (request, response) => {
